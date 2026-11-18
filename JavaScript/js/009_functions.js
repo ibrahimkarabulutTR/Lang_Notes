@@ -11,7 +11,7 @@ printText() // () invoke etmek çalıştırmak
 function printName(name, surname) {
 	console.log(name, surname)
 }
-printName('İbrahim','Karabulut') // girilen değerlere argüman denir
+printName('İbrahim','Karabulut') // parametrelere argüman ekleme
 
 
 // varsayılan parametreli fonksiyon argüman girmeden çağrılabilir
@@ -29,18 +29,18 @@ console.log(plus(5,10));
 
 
 // First Class Function Expression -> fonksiyon ismi isteğe bağlıdır -> this atadan miras alır
-const area = function(value) {
+// const fcLogger = function logger(value) // looger isteğe bağlı bir işi yok
+const fcLogger = function(value) {
 	console.log(value)
 }
-area('Hi arrow function')
+fcLogger('Hi arrow function')
 
 
-// Arrow Function Expression -> this mirası ilk function atadan miras alır
-const area = value => {
+// Arrow Function Expression -> this mirası ilk ata fonksiyondan alır
+const arrowLogger = value => {
 	console.log(value)
 }
-area('Hi arrow function')
-
+arrowLogger('Hi arrow function')
 
 // tek satırlık arrow fonksiyon
 const area1 = (value) => console.log(value);
@@ -48,7 +48,7 @@ const area1 = (value) => console.log(value);
 
 // arrow fonksiyona this atama
 function response(status, server) {
-  console.log(`Merhaba ${this.names}, durum: ${durum}, sunucu: ${server}`);
+  console.log(`Merhaba ${this.names}, durum: ${status}, sunucu: ${server}`);
 }
 
 const person = {
@@ -80,8 +80,10 @@ elis.func()
 
 
 // Function with method
+let username = 'İbrahim'
 const bigNamePrint = () => username.toUpperCase();
 console.log(bigNamePrint());
+
 
 // fonksiyonlar onclick vs ile html de çağrılabilir
 
@@ -100,7 +102,7 @@ const myFunc = function (num) {
 		console.log(num * 2)
 	}
 }
-myFunc(2)()
+myFunc(2)() // ilk fonksiyon argüman istemiş
 
 const result = myFunc(4)
 result()

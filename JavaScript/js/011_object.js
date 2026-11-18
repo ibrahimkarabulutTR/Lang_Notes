@@ -1,9 +1,16 @@
 // OBJECT
 
+// boş obje tanım
+let styleObj = new Object()
+let shortObj = {}
+
+
 // 1.METOD
-let tryObj = new Object({
+// objede anahtar için "" zorunluluğu yok
+let user = new Object({
   "name": "ibrahim"
 })
+
 
 // 2.METOD
 let profile = {
@@ -65,97 +72,107 @@ profile['printCompany']() // objedeki printCompany fonksiyonu çalıştır
 profile['printEmployee']()
 profile.graduate = {} // obje içinde graduate objesi aç
 profile.graduate.college = true // graduate objesine  college: true ekle
-// Property --> fonksiyon obje ile ilişkili
+
+// PROPERTY --> Profile = Object inheritance(toString, ...) + Profile(name, surname, ...)
 
 
 
-// CONSTRUCTOR
+/* 
+	objedeki değerleri this ile fonksiyonda kullanmak için prototype ile dışarıdan eklenmesi önerilir
+	çünkü normal fonksiyonda veya obje içinde kullanılırsa aynı değer her seferinde yeniden üretilir
+*/
 
-// METOD 1
-/* function personConstructorFunc(name, surname, age) {
+// örnek this'li fonksyion kullanımı
+profile.prototype.fullName = function() {
+  return `{this.name} ${this.surname}`
+};
+// objeye fonksiyon dışarıdan da eklenebilir
+profile.createRandomID = function() {
+  return Math.trunc(Math.Random()*100)
+};
+
+
+
+// CONSTRUCTOR(obje üretici fonksiyon) -> new anahtarı obje oluşturur
+
+// 1.Metod
+function personConstructorFunc(name, surname, age) {
 	const obj = {}
 	obj.name = name
 	obj.surname = surname
 	obj.age = age
-	obj.fullName = function() {
-		return obj.name+" "+obj.surname
-	}
 	return obj
 }
 const carpenterPerson = new personConstructorFunc("Abdullah", "Ökmen", "26")
 console.log(carpenterPerson)
-console.log(carpenterPerson.fullName()) */
 
 
-// METOD 2 -> THIS
-/* function personConstructorThis(name, surname, age) {
-	console.log(this)
+
+// 2.Metod -> THIS
+function personConstructorThis(name, surname, age) {
+	console.log(this) // herhangi bir değer yok
 	this.name = name
 	this.surname = surname
 	this.age = age
-	this.fullName = function() {
-		return this.name+" "+this.surname
-	}
-	console.log(this)
+	console.log(this) // değerleri gösterir
 }
 
 const doctorPerson = new personConstructorThis('Serhat', 'Tekik', 25)
 console.log(doctorPerson)
-console.log(doctorPerson.fullName()) */
 
 
-// METOD 3 -> OBJECT CREATE
+
+// 3.Metod -> OBJECT CREATE
 const objectCreatePerson = {
 	name: "NULL",
 	surname: "NULL",
 	age: "NULL",
-	fullName: function() {
-		return this.name+" "+this.surname
-	}
 }
 
-// objeye fonksiyon eklemekten hızlıdır
-objectCreatePerson.prototype.createRandomID = function() {
-  return Math.trunc(Math.Random()*name.length)
-};
 
 const armyPerson = Object.create(objectCreatePerson) // create ile yeni nesne oluşturmadan varolanı kopyalar bellek tasarrufu yapar
 armyPerson.name = 'Mete'
 armyPerson.surname = 'Yarar'
 console.log(armyPerson)
-console.log(armyPerson.fullName())
 console.log(armyPerson.name)
 console.log(armyPerson.hasOwnProperty('name')) // armyPerson'un name özelliği kullanıldığı için var
 console.log("name" in armyPerson) // armyPerson'un içinde kopyaladığı objeden dolayı name özelliği var
-// OBJECT --> name + surname + age + fullName --> objectCreatePerson
-// objectCreatePerson prototype --> object'ten miras alır
 
-console.log(Object.getPrototypeOf(armyPerson))
-// OBJECT --> name + surname + age + fullName --> Person Constructor --> gurcan
-// gurcan prototype --> Person Constructor prototype --> object inheritance
 
 armyPerson.job = 'Soldier'
 armyPerson.toString = function() {
 	return 'METE'
 }
 console.log(armyPerson.toString())
-// OBJECT --> name + surname + age + fullName --> objectCreatePerson + job --> armyPerson
+
+
+console.log(Object.getPrototypeOf(armyPerson))
+// armyPerson.property = Object inheritance + objectCreatePerson(name, surname, age) + armyPerson(job, toString)
 
 
 
 // NEW OBJECT SYNTAX
+
 // 1- Shorthand Properties
-let name = 'Arin', age = 20
-/*const myObj = {
-	name: name,
+let firstName = 'Arin',
+	lastName = 'Demir',
+	age = 20
+
+const normObject = {
+	firstName: firstName,
+	lastName: lastName,
 	age: age
-} */
-const myObj = {
-	name,
+}
+
+const shortObject = {
+	firstName,
+	lastName,
 	age
 }
-console.log(myObj.name)
-console.log(myObj.age)
+
+console.log(normObject.name)
+console.log(shortObject.age)
+
 
 
 // 2- Computed Property Names
@@ -167,45 +184,24 @@ console.log(myObj1)
 
 
 // 3- Object Destructuring
-let {name: myVar1, surname: myVar2} = profile
-console.log(myVar1, myVar2)
+let {name: profileName, surname: profileSurname} = profile
+console.log(profileName, profileSurname)
 
 let {name, surname} = profile
 console.log(name, surname)
 
 
-const books = [
-  {
-    title: "1984",
-    author: "George Orwell",
-    pageNumber: 328
-  },
-  {
-    title: "Hayvan Çiftliği",
-    author: "George Orwell",
-    pageNumber: 152
-  },
-  {
-    title: "Cesur Yeni Dünya",
-    author: "Aldous Huxley",
-    pageNumber: 311
-  },
-  {
-    title: "Fahrenheit 451",
-    author: "Ray Bradbury",
-    pageNumber: 192
-  }
-];
-for(const {title, author, pageNumber} of books){
-	console.log(`${title} --> ${author} [${pageNumber}]`)
+for(const {name, job} of profile.employee){
+	console.log(`${name} --> ${job}`)
 }
 
 
 // 4- Spread ile objeyi seçme ve atama (...)
-const booksCopy = {...books}
-console.log(booksCopy)
+const personCopy = {...profile}
+console.log(personCopy)
 
-// birleştirme
+
+// Obje birleştirme
 const data1 = {
 	name: 'Arin',
 	age: 40
@@ -219,14 +215,15 @@ console.log(personData)
 
 
 // 5- REST ile değeri parçalama
-const {title, ...details} = books
+const {title, ...details} = profile
 console.log(title)
 console.log(details)
 
-// 7- Object keys, values, entries
-console.log(Object.keys(books))
-console.log(Object.values(books))
-console.log(Object.entries(books))
+
+// 7- Object (keys, values, entries)
+console.log(Object.keys(profile))
+console.log(Object.values(profile))
+console.log(Object.entries(profile))
 
 
 

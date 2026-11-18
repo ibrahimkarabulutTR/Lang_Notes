@@ -2,7 +2,7 @@
 
 let names = ['Ahmet', 'Mahmut', 'Mehmet'];
 
-/* ilk metod */
+/* 1.Metod */
 // değişken dışarıda tanımlanıp da çağrılabilir
 for(let x=0; x<10; x++) {
 	console.log(x);
@@ -13,8 +13,9 @@ for(let n=0; n<names.length; n++) {
 }
 
 
-/* 2.metod */
-// dizi değerlerini döndürür in yazarsan dizi numalarını döndürür
+/* 2.Metod */
+// dizi değerlerini döndürür in yazarsan dizi numalarını döndürür 
+// Objeler içinde kullanılır
 for(let name of names) {
 	console.log(name);
 }

@@ -1,12 +1,24 @@
 // ARRAY
 
-// 1. Method
+// boş dizi tanım
+let list = new Array()
+let shortList = []
+
+
+ // 9'lu dizi oluştur değerleri null olsun
+let nullList = new Array(9).fill(null)
+
+
+// 1. Metod
 let cars = ['TOGG', 'BYD', 'Cherry', 'Tesla']
-// 2. Method
+
+
+// 2. Metod
 let phone = new Array('Apple', 'Samsung', 'Xiaomi', 'Huawei')
 
 console.log(cars[0], cars[1], cars[2])
-console.log(cars[cars.length - 1])
+console.log(cars[cars.length - 1]) // sonuncuyu bastırır
+
 
 const ul = document.createElement('ul')
 document.body.append(ul)
@@ -32,14 +44,20 @@ console.log(cars.length)
 
 // dizi sonuna eleman ekler
 cars.push('Amperino')
-cars = cars.concat('Zeekr')
 cars[cars.length] = "Volkswagen";
+
+// concat veriyi değiştirmez anlık manipule eder
+console.log(cars.concat('Devrim'))
+cars = cars.concat('Zeekr')
+
 
 // dizi sonundaki elemanı siler
 cars.pop()
 
+
 // dizi başına eleman ekler
 cars.unshift('Toyota')
+
 
 // dizi başındaki elemanı siler
 cars.shift()
@@ -49,19 +67,20 @@ cars.shift()
 let carCatalog = cars.join(', ')
 console.log(carCatalog)
 
-let carCatalogString = carCatalog.split(', ') // Stringi girilen değer yerlerinden parçalar diziye atar
+
+// String'i, girilen değer yerlerinden parçalar diziye atar
+let carCatalogString = carCatalog.split(', ') 
 console.log(carCatalogString)
 
 
-
-console.log(cars.sort()) // diziyi küçükten büyüğe sıralar orjinal dosyayı değiştirir
+console.log(cars.sort()) // diziyi küçükten büyüğe olacak şekilde değiştirir
 console.log(cars) // değişmiş dizi
 
-console.log(cars.reverse()) // diziyi büyükten küçüğe sıralar orjinal dosyayı değiştirir
+console.log(cars.reverse()) // diziyi büyükten küçüğe olacak şekilde değiştirir
 console.log(cars) // değişmiş dizi
 
-console.log(cars.toSorted()) // diziyi büyükten küçüğe sıralar orjinal dosyayı değiştirmez
+console.log(cars.toSorted()) // diziyi küçükten büyüğe geçici sıralar
 console.log(cars) // orjinal dizide değişme yok
 
-console.log(cars.toReversed()) // diziyi küçükten büyüğe sıralar orjinal dosyayı değiştirmez
+console.log(cars.toReversed()) // diziyi büyükten küçüğe geçici sıralar
 console.log(cars) // orjinal dizide değişme yok

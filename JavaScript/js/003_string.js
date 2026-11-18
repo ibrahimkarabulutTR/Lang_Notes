@@ -1,6 +1,6 @@
 let text = '  Hi, my name is İbrahim Karabulut my birthday is 01.01.2001   '
 
-// sorgu değişkenin içinde varsa Boolean döndürür
+// sorguyu değişkenin içinde arar Boolean döndürür
 console.log(text.includes('name'))
 
 

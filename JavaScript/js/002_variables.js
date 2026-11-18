@@ -82,13 +82,13 @@ points.pop()
 points.push(85)
 console.log(points)
 
-const profile = {
+const user = {
 	name: 'İbrahim Karabulut',
 	lang: ['TR', 'EN']
 }
-profile.lang.push("DE")
-console.log(profile)
-Object.freeze(profile) // objelerde değişikliği durdurmak için
+user.lang.push("DE")
+console.log(user)
+Object.freeze(user) // objelerde değişikliği durdurmak için
 
 
 

@@ -1,3 +1,5 @@
+// BOOLEAN
+
 // değişken true(doğru) yada false(yanlış) döndürür
 let answer = true;
 answer = false;

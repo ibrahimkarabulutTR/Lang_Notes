@@ -4,11 +4,11 @@ let note=85;
 
 // IF
 if(note >= 75) {
-	console.log('Good');
+	console.log('İyi');
 } else if(note >= 50) {
-	console.log('Middle')
+	console.log('Orta')
 } else {
-	console.log('Bad');
+	console.log('Kötü');
 }
 
 
@@ -18,7 +18,7 @@ else if(note >= 50) console.log('Middle')
 else console.log('Bad');
 
 
-// diğer metod
+// kısa söz dizimi
 let result = note >= 75 ? console.log('Good') : note >= 50 ? console.log('Middle') : console.log('Bad');
 
 
@@ -27,9 +27,9 @@ let result = note >= 75 ? console.log('Good') : note >= 50 ? console.log('Middle
 let x=0;
 let y=1;
 if(x==0 && y==1) {
-	console.log('all conditions are true');
+	console.log('koşullar sağlandı');
 } else if(x==1 || y==1) {
-	console.log('1 of true 1 of false');
+	console.log('en az 1 koşul sağlandı');
 }
 
 // sadece 18 ile 28 arasını bastır
@@ -41,9 +41,11 @@ for(let a=0; a<30; a++) {
 	}
 }
 
+// koşul sağlanırsa çalışmayı reddeder
+/*if(squares[i]) return*/
 
 
-// Switch
+// Switch -> tek tek sorgu
 let resultGraduate = 'AA';
 
 switch(resultGraduate) {
@@ -65,11 +67,11 @@ switch(resultGraduate) {
 
 // Optional chaining ?.
 const user = {
-    name: 'Ali',
-    address: {
-        city: 'Ankara',
-        street: 'Atatürk Caddesi'
-    }
+	name: 'Ali',
+	address: {
+		city: 'Ankara',
+		street: 'Atatürk Caddesi'
+	}
 };
 
 // const city = user.location.city; // istenen adres olmadığı için hata verir
@@ -80,19 +82,14 @@ console.log(city); // undefined
 
 
 
-// ekstra taktikler
-let i = 5
-div.classList.toggle("visible", i < 10) // eğer i 10'dan küçükse toggle çalıştır
-
-
 // sadece 10 div görünsün diğerleri gizli kalsın örnek
 for(let n=15; n<10; n--){
-	div.classList.toggle("visible", i < 10) // ilk 10 öğre için geçerli süreç
+	div.classList.toggle("visible", i < 10) // ilk 10 öğe görünür olsun
 }
 
+let isWrong = true
+isWrong && alert('Şifreni mi unuttun?'); // isWrong doğru ise şu işlemi çalıştır|yap
 
-isAdmin && deleteUser(userId); // isAdmin doğru ise deleteUser() çalıştırır
 
-
-// eğer settings.user null, undefined, 0 yada boş olduğunda çalışacak varsayılan değer
-const userName = settings.user || "Misafir";
+// eğer user.name null, undefined, 0 yada boş olduğunda çalışacak varsayılan değer
+const userName = user.name || "Misafir";

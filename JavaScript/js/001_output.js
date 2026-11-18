@@ -4,24 +4,12 @@
 document.write('Hello World');
 
 
-// JS DOM ve toplu değişken tanımlama
-let p_html 		= document.querySelector('p#p-inner-html'),
-		p_text 		= document.querySelector('#p-inner-text'),
-		p_content = document.querySelector('#p-text-content')
-
-
-// DOM ile HTML müdahele
-p_html.innerHTML = '<h1>Hello World</h1>'
-p_text.innerText = '<small>Text with html code</small>'
-p_content.textContent ='Only text'
-
-
 // Ekrana bildirim verir
 alert('Hello Alert')
 window.alert('Window Alert')
 
 
-// * Bildirimden input alır
+// * Bildirimden input alır isim değişkenine atar
 let isim = prompt("Adınız nedir?", "Misafir");
 
 
