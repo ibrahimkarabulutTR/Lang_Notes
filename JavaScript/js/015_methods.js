@@ -56,11 +56,11 @@ console.log(passedStudent)
 
 // gruplama yapmak için
 const passedGroup = students.reduce((group, student) => {
-    const passed = student.passed;
-    if (!group[passed]) {
-        group[passed] = [];
+    const passed = student.passed; // değeri değişkene ata
+    if (!group[passed]) { // group içinde değer varmı 
+        group[passed] = []; // grup içinde bu isimde yer aç
     }
-    group[passed].push(student);
+    group[passed].push(student); // aynı değerdekini buraya at
     return group;
 }, {});
 

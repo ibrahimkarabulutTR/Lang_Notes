@@ -1,9 +1,8 @@
-// CLASS -> kişisel değiştirilebilir fonksiyon
+// CLASS -> Obje şablonudur
+// Bir sınıfınız olduğunda, bu sınıfı kullanarak nesneler oluşturabilirsiniz:
 
-/* Constructor fonksiyonlarda dışarıdan fonksiyon eklemek kod karmaşasına neden olur
-	prototype eklersen de sonradan değişiklik(kişiselleştirme) yapamazsın bu yüzden büyük kullanımlar için Class kullanılır. */
 
-// Class Declaration (ilk harfin büyük olması önerilir)
+// Class Declaration (büyük harfle başlaması standarttır)
 class Waiter {
 	// parametre ekleme
 	constructor(name, surname, age) {
@@ -36,22 +35,26 @@ const Customer = class {
 }
 
 
-const Abdullah = new Customer('Abdullah', 'Ökmen', 25) // class çağırma argüman ekleme
+const Abdullah = new Customer('Abdullah', 'Ökmen', 25) // sınıf'a argüman ekleyip obje oluşturma
 console.log(Abdullah)
 console.log(Abdullah.name)
 console.log(Abdullah.fullName())
-// console.log(Customer.fullName()) // hata verir çünkü person bir iskelet bu yapılar boş ve tanımlanacak değişkene ait olurlar
-// ama static öğeler ise person'a ait
+
+// console.log(Customer.fullName()) // hata verir çünkü fullName Objeye ait sınıfa değil
+
+// ama static öğeler ise sınıf'a ait özelliklerdir
 console.log(Customer.showName)
 Customer.specialMethod()
-// tanımlandığı değişkenler kullanamaz
-// console.log(Abdullah.showName) // hata verir
+
+// console.log(Abdullah.showName) // hata verir çünkü sınıfın özelliğini obje de çağırmış
 Abdullah.graduate.push('college')
-console.log(typeof Abdullah)
-console.log(typeof Customer)
+
+console.log(typeof Abdullah) // Object
+console.log(typeof Customer) // Function
 console.log(Abdullah instanceof Customer)
 
 
+// EngineerCustomer'a Customer eklenerek sınıfı genişletir
 class EngineerCustomer extends Customer {
 	constructor(name, surname, age, job){
 		super(name, surname, age)
@@ -61,12 +64,12 @@ class EngineerCustomer extends Customer {
 		console.log('Earn Money')
 	}
 }
+// EngineerCustomer Property = EngineerCustomer [subclass(child)] + Customer [superclass(parent))]
 
-/* Engineer Person'u referans alır kendi özellikleri ile genişletir (extends eder) 
-Engineer --> subclass (child), Person --> superclass (parent) */
-const İbrahim = new Engineer('İbrahim', 'Kenan', '35', 'CNC')
 
-console.log(Abdullah instanceof Person)
+const İbrahim = new EngineerCustomer('İbrahim', 'Kenan', '35', 'CNC')
+
+console.log(Abdullah instanceof Customer)
 console.log(İbrahim instanceof Engineer)
 
 

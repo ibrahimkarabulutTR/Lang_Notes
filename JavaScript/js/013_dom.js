@@ -1,24 +1,37 @@
 // DOM --> DOCUMENT OBJECT MANIPULATED
 
-let lead = document.querySelector('div.lead'),
-    wrapper = document.querySelector('.wrapper'),
-    container = document.querySelector('#container')
-
-lead.innerHTML += '<p>This is a paragraph of div</p>'; // html müdahelesi yapabilirsin
-lead.innerText += 'add word with innerText'; // sadece içerik değiştirir kodları da düz yazı olarak yazar
-console.log(lead);
-
-
-const mainChild = document.querySelector('main > *'); // sadece main'in altındakiler gelsin
+const section = document.createElement('section') // section tag'ı oluşur
+section.innerText = "innerText ile oluşturulmuş içerik" // sadece içerik değişikliği
+section.textContent += "textContent ile oluşturulmuş içerik" // sadece içerik değişikliği
+section.innerHTML += "<b>innerHTML ile oluşturulmuş tag'lı içerik</b>" // güvenlik önlemsiz tag'lı içerik ekleme
+console.log(section.outerHTML) // 
+document.body.append(section) // section'u body'ye kaydetme
 
 
-// toplu çağırmalar cevap olarak dizi döndürür
+// XSS korumalı içerik ekleme
+const policy = trustedTypes.createPolicy('contentPolicy', {
+  createHTML: input => DOMPurify.sanitize(input)
+})
+const secureInput = policy.createHTML('<b>Merhaba</b>')
+
+
+
+// HTML Çağırma
+// querySelector ile tekil
+let lead = document.querySelector('div.lead'), // ilk lead classlı div gelsin
+    wrapper = document.querySelector('.wrapper'), // ilk wrapper classlı element gelsin
+    container = document.querySelector('#container') // ilk container idli element gelsin
+
+const mainChild = document.querySelector('main > *'); // main'in hemen altındaki ilk element
+
+
+// SelectorAll -> Dizi döndürür
 let allQuery = document.querySelectorAll('div');
 console.log(allQuery);
 console.log(allQuery[1]);
 
 
-// HTML Collections -> OBJECT
+// HTML Collections -> Obje döndürür
 let paragraph = document.getElementsByTagName('p');
 console.log(paragraph);
 
@@ -39,25 +52,23 @@ allDivide.forEach(divide => {
 
 
 // JS de CSS düzenleme
-lead.style.backgroundColor="red"
-lead.style.color="white"
-lead.style.margin = '0';
-lead.style.textAlign = 'center';
-lead.style.padding = '50px';
+section.style.backgroundColor="red"
+section.style.color="white"
+section.style.margin = '0';
+section.style.textAlign = 'center';
+section.style.padding = '50px';
 
 
 
 // ATTRIBUTE
-const link = document.querySelector('a');
-console.log(link);
+const link = document.querySelector('a'); // a tagını değişkene ata
+link.textContent = 'Google link'; // içerik ekle
+link.setAttribute('href', 'https://www.google.com.tr/'); // attribute ekle
+link.setAttribute('class', 'google-link') // ettribute değiştir
+console.log(link.getAttribute('href')); // attribute değeri çağır
+link.removeAttribute("disabled") // attribute sil
 
-link.textContent = 'Google link';
-link.setAttribute('href', 'https://www.google.com.tr/');
-
-console.log(link.getAttribute('href'));
-link.setAttribute('class', 'google-link')
-
-// link değişkenindeki tag'da attribute varmı
+// link'te attribute kontrolü
 if(link.hasAttributes()){
   console.log(link.attributes)
 }
@@ -65,36 +76,32 @@ if(link.hasAttributes()){
 
 
 // CLASSLIST
-const div = document.createElement('div')
-console.log(div.outerHTML) // html elementini en kapsayıcı şekilde yazdırır
-
-
 // html tagına class ekleme silme
-div.classList.add("foo");
-console.log(div.outerHTML)
+section.classList.add("foo");
+console.log(section.outerHTML)
 
-console.log(div.classList.contains("foo")); // div'in foo diye class'ı varmı
+console.log(section.classList.contains("foo")); // section'in foo diye class'ı varmı
 
-div.classList.remove("foo");
-console.log(div.outerHTML)
+section.classList.remove("foo");
+console.log(section.outerHTML)
 
 let i=0;
-div.classList.toggle("visible", i < 10); // i<10 ise visible ekle varsa da sil
+section.classList.toggle("visible", i < 10); // i<10 ise visible ekle varsa da sil
 
 
 // toplu class ekleme, silme
-div.classList.add("foo", "bar", "baz");
-div.classList.remove("foo", "bar", "baz");
+section.classList.add("foo", "bar", "baz");
+section.classList.remove("foo", "bar", "baz");
 
 
 // spread operator ile dizidekileri class'a ekleme, silme
 const cls = ["foo", "bar"];
-div.classList.add(...cls);
-div.classList.remove(...cls);
+section.classList.add(...cls);
+section.classList.remove(...cls);
 
 
 // replace ile class değiştirme
-div.classList.replace("visible", "unvisible");
+section.classList.replace("visible", "unvisible");
 
 
 

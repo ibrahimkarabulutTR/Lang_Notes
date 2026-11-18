@@ -18,15 +18,15 @@ div.addEventListener("mousemove", () => { console.log("mouse hareket ediyor"); }
 // Klavye eventleri
 // tuşa basıldığında çalışır
 document.addEventListener("keydown", (e) => {
-    if (e.target.code === "Enter") { // target (tıklanan, tetiklenen)
-        console.log("Enter tuşuna basıldı!");
+    if (e.target.code === "Y") { // target (tıklanan, tetiklenen)
+        console.log("Y tuşuna basıldı!");
     }else if(e.code === "keyW") {
 			console.log("w tuşuna basıldı")
 		}
 });
 
 // tuşu bırakınca çalışır
-document.addEventListener("keyup", (e) => {...});
+document.addEventListener("keyup", (e) => {console.log(e.target)});
 
 
 // Form eventleri
